@@ -1,0 +1,5 @@
+colorply help version 0.1
+
+colorply help [command] : get help about a colorply command
+
+add [inputfile] [outputfile] [imgdir] [oridir] [calibfile] [name] : add a channel to a cloud

@@ -1,0 +1,7 @@
+add INPUTFILE OUTPUTFILE IMGDIR ORIDIR CALIBFILE NAME : add a channel to a cloud
+    INPUTFILE : path to the input ply cloud
+    OUTPUTFILE : path to the output ply cloud
+    IMGDIR : path to the directory containing the images
+    ORIDIR : path to the MicMac generated orientation directory
+    CALIBFILE : path to the xml calbiration file of the camera
+    NAME : name of the channel to add to the cloud
