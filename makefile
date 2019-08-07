@@ -4,7 +4,7 @@ SRCDIR=src
 ODIR=$(SRCDIR)/obj
 CXX=g++
 CXXFLAGS=-I$(IDIR) -g
-DEPS=$(IDIR)/commands.hpp $(IDIR)/functions.hpp
+DEPS=$(IDIR)/*.hpp happly/happly.h
 
 
 all : colorply
