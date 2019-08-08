@@ -3,25 +3,33 @@ LDIR=libs
 SRCDIR=src
 ODIR=$(SRCDIR)/obj
 CXX=g++
-CXXFLAGS=-I$(IDIR) -g
-DEPS=$(IDIR)/*.hpp happly/happly.h
-
+CXXFLAGS=-I$(IDIR) -Ipugixml/src -Ihapply -g
+DEPS=$(IDIR)/*.hpp happly/happly.h pugixml/src/*.hpp
+OBJ= $(ODIR)/main.o $(ODIR)/functions.o $(ODIR)/commands.o pugixml/pugixml.o
+RM= rm -f
 
 all : colorply
 
 $(ODIR)/main.o : $(SRCDIR)/main.cpp $(DEPS)
-	$(CXX) -c  $< $(CXXFLAGS) -o $@
-	
-$(ODIR)/commands.o : $(SRCDIR)/commands.cpp $(DEPS)
-	$(CXX) -c  $< $(CXXFLAGS) -o $@
+	$(CXX) -c $<  $(CXXFLAGS) -o $@
 
 $(ODIR)/functions.o : $(SRCDIR)/functions.cpp $(DEPS)
-	$(CXX) -c  $< $(CXXFLAGS) -o $@
+	$(CXX) -c $<  $(CXXFLAGS) -o $@
 
-colorply : $(ODIR)/main.o $(ODIR)/commands.o $(ODIR)/functions.o
-	$(CXX)  $(ODIR)/*.o $(DEPS) $(CXXFLAGS) -o $@
+$(ODIR)/commands.o : $(SRCDIR)/commands.cpp $(DEPS)
+	$(CXX) -c $<  $(CXXFLAGS) -o $@
 
-.PHONY: clean
+pugixml/pugixml.o : pugixml/src/pugixml.cpp $(DEPS)
+	$(CXX) -c $<  $(CXXFLAGS) -o $@
+
+colorply : $(OBJ)
+	$(CXX) $(ODIR)/*.o $(DEPS) $(CXXFLAGS) -o $@
+
+testt : test/test.cpp pugixml/pugixml.o
+	$(CXX) $< pugixml/pugixml.o $(DEPS) $(CXXFLAGS) -o $@
+
+PHONY: clean
 clean:
-	rm $(ODIR)/*.o
-	rm colorply
+	$(RM) $(ODIR)/*.o
+	$(RM) colorply
+	$(RM) testt

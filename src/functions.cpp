@@ -3,7 +3,7 @@
 #include <fstream>
 
 void print(const char* str) {
-    std::cout << str;
+    std::cout << str << std::endl;
 }
 
 int help(std::vector<std::string> args) { // Dispaly the help file
@@ -19,6 +19,7 @@ int help(std::vector<std::string> args) { // Dispaly the help file
     std::ifstream file(path);
     if (file) {
         std::string line;
+        std::cout<<std::endl;
         while(!file.eof()) {
             getline(file, line);
             std::cout<<line<<std::endl;
@@ -27,7 +28,7 @@ int help(std::vector<std::string> args) { // Dispaly the help file
     }
     else{
         print("Unable to open helpfile");
-        exit(1);
+        return 1; 
     }
-    return 1;
+    return 0;
 }

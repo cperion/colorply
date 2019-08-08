@@ -28,8 +28,16 @@
             "problemMatcher": [
                 "$gcc"
             ]
+        },
+        {
+            "type": "shell",
+            "label": "BuildTest",
+            "command": "make testt",
+            "args": [],
+            "problemMatcher": [
+                "$gcc"
+            ]
         }
-
 
 
     ]
