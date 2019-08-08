@@ -30,6 +30,6 @@ testt : test/test.cpp pugixml/pugixml.o
 
 PHONY: clean
 clean:
-	$(RM) $(ODIR)/*.o
+	$(RM) $(OBJ)
 	$(RM) colorply
 	$(RM) testt
