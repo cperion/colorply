@@ -34,3 +34,7 @@ colorply
 
 #IDE files
 .vscode/
+*.kdev4
+
+#build files
+build
