@@ -4,7 +4,7 @@
 #include "Eigen/Dense"
 #include <iostream>
 #include "functions.hpp"
-std::pair<Eigen::Vector3d,Eigen::MatrixXd> getori(pugi::xml_document const &doc) {
+std::pair<Eigen::Vector3d,Eigen::MatrixXd> getorifromxml(pugi::xml_document const &doc) {
     Eigen::MatrixXd R(3,3);
     Eigen::Vector3d S;
     std::string centre_str = doc.select_node("/ExportAPERO/OrientationConique/Externe/Centre").node().child_value();
@@ -30,7 +30,7 @@ std::pair<Eigen::Vector3d,Eigen::MatrixXd> getori(pugi::xml_document const &doc)
     return std::pair<Eigen::Vector3d,Eigen::MatrixXd>(S, R);
 }
 
-Eigen::Vector3d getcenter(pugi::xml_document const &doc) {
+Eigen::Vector3d getcenterfromxml(pugi::xml_document const &doc) {
     Eigen::Vector3d out;
     std::string ppstring = doc.select_node("/ExportAPERO/CalibrationInternConique/PP").node().child_value();
     std::vector<std::string> ppstringv = splitstr(ppstring, std::string(" "));
@@ -42,7 +42,7 @@ Eigen::Vector3d getcenter(pugi::xml_document const &doc) {
     return out;
 }
 
-Eigen::Vector3d getdistcenter(pugi::xml_document const &doc) {
+Eigen::Vector3d getdistcenterfromxml(pugi::xml_document const &doc) {
     Eigen::Vector3d out;
     std::string ppstring = doc.select_node("/ExportAPERO/CalibrationInternConique/CalibDistortion/ModRad/CDist").node().child_value();
     std::vector<std::string> ppstringv = splitstr(ppstring, std::string(" "));
@@ -54,7 +54,7 @@ Eigen::Vector3d getdistcenter(pugi::xml_document const &doc) {
     return out;
 }
 
-std::vector<double> getdistcoefs(pugi::xml_document const &doc) {
+std::vector<double> getdistcoefsfromxml(pugi::xml_document const &doc) {
     std::vector<double> out;
     pugi::xml_node node = doc.select_node("/ExportAPERO/CalibrationInternConique/CalibDistortion/ModRad").node();
     node = node.first_child();
@@ -70,21 +70,19 @@ std::vector<double> getdistcoefs(pugi::xml_document const &doc) {
     return out;
 }
 
-Eigen::Vector3d getF(pugi::xml_document const &doc) {
-    Eigen::Vector3d F = getcenter(doc);
+Eigen::Vector3d getFfromxml(pugi::xml_document const &doc) {
+    Eigen::Vector3d F = getcenterfromxml(doc);
     F(2) = std::stod(doc.select_node("/ExportAPERO/CalibrationInternConique/F").node().child_value());
     return F;
 }
 
-std::vector<int> getsize(pugi::xml_document const &doc) {
-    std::vector<int> out;
+std::pair<int, int> getsizefromxml(pugi::xml_document const &doc) {
+    
     std::string szim = doc.select_node("/ExportAPERO/CalibrationInternConique/SzIm").node().child_value();
     std::vector<std::string> szimstrv = splitstr(szim, std::string(" "));
     int x = std::stoi(szimstrv[0]);
     int y = std::stoi(szimstrv[1]);
-    out.push_back(x);
-    out.push_back(y);
-    return out;
+    return std::pair<int, int>(x,y);
 }
 
 /* int main() {

@@ -9,6 +9,7 @@ int cmd ( std::vector< std::string > args )
         args.push_back("help");
     }
     std::unordered_map<std::string, int(*)(std::vector<std::string>)> commandmap;
+
     commandmap[std::string("help")] = help;
     
     if (commandmap.count(args[1])) {
