@@ -1,7 +1,7 @@
 #include <iostream>
 #include <unordered_map>
 #include "commands.hpp"
-#if 0
+#if 1
 int main ( int argc, char const *argv[] ) {
     std::vector<std::string> args;
     for ( int i = 0; i<argc; i++ ) {

@@ -15,7 +15,6 @@ link_libraries(
     X11
 )
 
-
 include_directories(
     ./include
     ./happly
@@ -38,16 +37,3 @@ add_executable(
     src/ioimage.cpp
 )
 
-add_executable(
-    test
-    src/commands.cpp
-    src/functions.cpp
-    src/ioply.cpp
-    src/ioxml.cpp
-#    src/main.cpp
-    pugixml/src/pugixml.cpp
-    src/Image.cpp
-    src/Camera.cpp
-    src/processing.cpp
-    src/ioimage.cpp
-)

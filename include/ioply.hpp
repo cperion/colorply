@@ -3,4 +3,4 @@
 #include "Eigen/Dense"
 
 
-std::vector<Eigen::Vector3f> readply(const char * fname);
+std::vector<Eigen::Vector3d> readply(const char * fname);

@@ -6,7 +6,7 @@
 
 
 
-std::vector<Image> load_images(char *  imdir, char * oridir, Camera* cam) {
+std::vector<Image> load_images(const char *  imdir,const char * oridir, Camera* cam) {
     std::vector<Image> out;
     std::vector<std::string> exts = {".TIF"};
     std::vector<std::string> imgls = lsimages(imdir, exts);
@@ -18,8 +18,7 @@ std::vector<Image> load_images(char *  imdir, char * oridir, Camera* cam) {
         }
         xmlpath.append("Orientation-" + getfname(imgpath.c_str()) + std::string(".xml"));
         if (std::filesystem::exists(xmlpath)) {
-            Image img(imgpath.c_str(), xmlpath.c_str(), cam);
-            out.push_back(img);
+            out.emplace_back(imgpath.c_str(), xmlpath.c_str(), cam);
         }
     }
     return out;

@@ -1,4 +1,3 @@
-#pragma once
 #include "ioxml.hpp"
 #include "pugixml.hpp"
 #include "Eigen/Dense"

@@ -6,7 +6,6 @@ Camera::Camera(const char * fpath) {
     this->name = getfname(fpath);
     pugi::xml_document doc;
     doc.load_file(fpath);
-    this->name = name;
     this->center = getcenterfromxml(doc);
     this->distcenter = getdistcenterfromxml(doc);
     this->distcoefs = getdistcoefsfromxml(doc);
